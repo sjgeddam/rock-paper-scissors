@@ -14,33 +14,52 @@ function computerPlay() {
 function playRPS(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         console.log("THERE'S A DRAW! You both selected: " + playerSelection);
+        return 0; 
     }
 
     if (playerSelection == "ROCK") {
         if (computerSelection == "PAPER") {
-            printWinOrLose(false, playerSelection, computerSelection); //lose
+            console.log(printWinOrLose(false, playerSelection, computerSelection)); //lose
+            return 0; 
         } else if (computerSelection == "SCISSORS") {
-            printWinOrLose(true, playerSelection, computerSelection); //win 
+            console.log(printWinOrLose(true, playerSelection, computerSelection)); //win 
+            return 1; 
         }
     }
 
     if (playerSelection == "PAPER") {
         if (computerSelection == "SCISSORS") {
-            printWinOrLose(false, playerSelection, computerSelection); // lose
+            console.log(printWinOrLose(false, playerSelection, computerSelection)); // lose
+            return 0; 
         } else if (computerSelection == "ROCK") {
-            printWinOrLose(true, playerSelection, computerSelection); // win
+            console.log(printWinOrLose(true, playerSelection, computerSelection)); // win
+            return 1; 
         }
     }
 }
 
 function printWinOrLose(wongame, playerSelection, computerSelection) {
     if (wongame) {
-        console.log("YOU WIN! You selected: " + playerSelection + " and computer selected: " + computerSelection);
+        return "YOU WIN! You selected: " + playerSelection + " and computer selected: " + computerSelection;
     } else {
-        console.log("YOU LOSE! You selected: " + playerSelection + " and computer selected: " + computerSelection);
+        return "YOU LOSE! You selected: " + playerSelection + " and computer selected: " + computerSelection;
     }
 }
 
-let playerSelection = prompt("Choose ROCK, PAPER, or SCISSORS").toUpperCase();
-let computerSelection = computerPlay();
-playRPS(playerSelection, computerSelection);
+function game() {
+    let gamesWon = 0; 
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Choose ROCK, PAPER, or SCISSORS").toUpperCase();
+        let computerSelection = computerPlay();
+        gamesWon += playRPS(playerSelection, computerSelection);   
+    }
+    if (gamesWon >= 3) {
+        console.log("You won " + gamesWon + " out of the 5 games! You win overall!!!");
+    } else {
+        console.log("You won " + gamesWon + " out of the 5 games! You lost overall!!!");
+    }
+}
+
+game();
+
+
