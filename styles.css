@@ -48,3 +48,10 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+#scores {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 75px;
+    margin-right: 75px; 
+}

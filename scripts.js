@@ -16,7 +16,7 @@ function playRound(playerSelection, computerSelection) {
     const resdiv = document.querySelector('#results');
     if (playerSelection == computerSelection) {
         resdiv.textContent = "THERE'S A DRAW! You both selected: " + playerSelection;
-        return 0; 
+        return -1; 
     }
 
     if (playerSelection == "ROCK") {
@@ -44,9 +44,9 @@ function playRound(playerSelection, computerSelection) {
 
 function WinOrLose(wongame, playerSelection, computerSelection) {
     if (wongame) {
-        return "YOU WIN! You selected: " + playerSelection + " and computer selected: " + computerSelection;
+        return "YOU WIN THIS ROUND! You selected: " + playerSelection + " and computer selected: " + computerSelection;
     } else {
-        return "YOU LOSE! You selected: " + playerSelection + " and computer selected: " + computerSelection;
+        return "YOU LOST THIS ROUND! You selected: " + playerSelection + " and computer selected: " + computerSelection;
     }
 }
 
@@ -65,11 +65,14 @@ function game() {
     });
 }
 
-function play5Rounds() {
-    let gamesPlayed = 5; 
+function play3Rounds() {
+    let gamesPlayed = 3; 
     let gameNum = 0; 
     while (gameNum < gamesPlayed) {
-        
+        let result = game();
+        if (result != -1) {
+            gameNum++; 
+        }
     }
 }
 
