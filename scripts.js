@@ -7,6 +7,8 @@ function computerPlay() {
             return "PAPER"
         case 3:
             return "SCISSORS"
+        default:
+            return ""
     }
 }
 
@@ -53,14 +55,22 @@ function game() {
     const paperB = document.querySelector('#paper');
     const scissorsB = document.querySelector('#scissors');
     rockB.addEventListener('click', () => {
-        playRound("ROCK", computerPlay());
+        return playRound("ROCK", computerPlay());
     });
     paperB.addEventListener('click', () => {
-        playRound("PAPER", computerPlay());
+        return playRound("PAPER", computerPlay());
     });
     scissorsB.addEventListener('click', () => {
-        playRound("SCISSORS", computerPlay());
+        return playRound("SCISSORS", computerPlay());
     });
+}
+
+function play5Rounds() {
+    let gamesPlayed = 5; 
+    let gameNum = 0; 
+    while (gameNum < gamesPlayed) {
+        
+    }
 }
 
 game(); 
