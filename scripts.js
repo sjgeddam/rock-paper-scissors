@@ -65,16 +65,27 @@ function game() {
     });
 }
 
-function play3Rounds() {
-    let gamesPlayed = 3; 
-    let gameNum = 0; 
+function play5Rounds() {
+    let gamesPlayed = 5; 
+    let gameNum = 0;
+    let computerScore = 0; 
+    let userScore = 0; 
+    let user = document.querySelector('#userscore');
+    let comp = document.querySelector('#computerscore');
     while (gameNum < gamesPlayed) {
         let result = game();
         if (result != -1) {
             gameNum++; 
+            if (result == 1) {
+                userScore++; 
+                user.textContent = "Your Score: " + userScore; 
+            } else {
+                computerScore++;
+                comp.textContent = "Computer's Score: " + computerScore; 
+            }
         }
     }
 }
 
-game(); 
+play5Rounds(); 
 
