@@ -12,19 +12,37 @@ function computerPlay() {
     }
 }
 
+let computerScore = 0; 
+let userScore = 0; 
+
+function displayScores() {
+    let user = document.querySelector('#userscore');
+    let comp = document.querySelector('#computerscore');
+    user.textContent = "Your Score: " + userScore; 
+    comp.textContent = "Computer's Score: " + computerScore; 
+}
+
 function playRound(playerSelection, computerSelection) {
     const resdiv = document.querySelector('#results');
     if (playerSelection == computerSelection) {
         resdiv.textContent = "THERE'S A DRAW! You both selected: " + playerSelection;
+        displayScores();
+        determineWinner();
         return -1; 
     }
 
     if (playerSelection == "ROCK") {
         if (computerSelection == "PAPER") {
             resdiv.textContent = WinOrLose(false, playerSelection, computerSelection); //lose
+            computerScore++;
+            displayScores();
+            determineWinner();
             return 0; 
         } else if (computerSelection == "SCISSORS") {
             resdiv.textContent = WinOrLose(true, playerSelection, computerSelection); //win 
+            userScore++;
+            displayScores();
+            determineWinner();
             return 1; 
         }
     }
@@ -32,13 +50,18 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == "PAPER") {
         if (computerSelection == "SCISSORS") {
             resdiv.textContent = WinOrLose(false, playerSelection, computerSelection); // lose
+            computerScore++;
+            displayScores();
+            determineWinner();
             return 0; 
         } else if (computerSelection == "ROCK") {
             resdiv.textContent = WinOrLose(true, playerSelection, computerSelection); // win
+            userScore++;
+            displayScores();
+            determineWinner();
             return 1; 
         }
     }
-
     return 0; 
 }
 
@@ -68,24 +91,25 @@ function game() {
 function play5Rounds() {
     let gamesPlayed = 5; 
     let gameNum = 0;
-    let computerScore = 0; 
-    let userScore = 0; 
-    let user = document.querySelector('#userscore');
-    let comp = document.querySelector('#computerscore');
+    computerScore = 0; 
+    userScore = 0; 
     while (gameNum < gamesPlayed) {
-        let result = game();
-        if (result != -1) {
-            gameNum++; 
-            if (result == 1) {
-                userScore++; 
-                user.textContent = "Your Score: " + userScore; 
-            } else {
-                computerScore++;
-                comp.textContent = "Computer's Score: " + computerScore; 
-            }
-        }
+        game();
+        gameNum++;
     }
 }
 
+function determineWinner() {
+    const winner = document.querySelector('#winner');
+    if (computerScore == 3) {
+        winner.textContent = "GAME OVER: Computer Wins!!!"
+    }
+    if (userScore == 3) {
+        winner.textContent = "GAME OVER: You Win!!!"
+    }
+}
+
+
 play5Rounds(); 
+
 
